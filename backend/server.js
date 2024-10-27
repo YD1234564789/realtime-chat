@@ -7,9 +7,9 @@ import messageRoutes from "./routes/message.routes.js"
 import userRoutes from "./routes/user.routes.js"
 
 import connectDB from "./config/mongoose.js"
+import { app, server } from "./socket/socket.js"
 
 dotenv.config()
-const app = exprss()
 const PORT = process.env.PORT || 5000
 
 app.use(cookieParser())
@@ -22,7 +22,7 @@ app.use("/api/users", userRoutes)
 
 
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   connectDB()
   console.log(`server running on port ${PORT}`)
 })
